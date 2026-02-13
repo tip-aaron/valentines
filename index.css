@@ -1,0 +1,299 @@
+:root {
+  --bg: 158 83% 14%;
+  --fg: 158 83% 100%;
+
+  --red: 348 100% 67%;
+  --red-2: 351 100% 59%;
+  --fontsize: 24px;
+  --typescale: 1.25;
+
+  --heart-size: 32px;
+
+  --radius: 0.5rem;
+}
+
+html {
+  font-size: var(--fontsize);
+}
+
+body {
+  background-color: hsl(var(--bg));
+  color: hsl(var(--fg));
+
+  padding-block: 1rem;
+
+  font-family:
+    Poppins,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 100dvh;
+}
+
+h1 {
+  font-size: 3.815rem;
+}
+
+h2 {
+  font-size: 3.052rem;
+}
+
+h3 {
+  font-size: 2.441rem;
+}
+
+h4 {
+  font-size: 1.953rem;
+}
+
+h5 {
+  font-size: 1.563rem;
+}
+
+h6 {
+  font-size: 1.25rem;
+}
+
+small {
+  font-size: 0.8rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family:
+    Noto Sans,
+    serif;
+  line-height: 1.2;
+
+  letter-spacing: -1.5%;
+
+  text-transform: uppercase;
+}
+
+p,
+small {
+  letter-spacing: 0.5%;
+  line-height: 1.5;
+}
+
+.heart {
+  --_bg: hsl(var(--red));
+  position: absolute;
+  width: var(--heart-size);
+  height: var(--heart-size);
+
+  background: var(--_bg);
+
+  transform: rotate(45deg);
+
+  animation: fall 2s linear infinite;
+
+  touch-action: none;
+  pointer-events: none;
+  z-index: -3;
+
+  &::before,
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    width: var(--heart-size);
+    height: var(--heart-size);
+
+    border-radius: 50%;
+
+    background: var(--_bg);
+  }
+
+  &::before {
+    top: -16px;
+    left: 0;
+  }
+
+  &::after {
+    top: 0;
+    left: -16px;
+  }
+}
+
+@keyframes fall {
+  from {
+    top: -50px;
+    opacity: 0.5;
+  }
+
+  to {
+    top: 100dvh;
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.container {
+  width: min(calc(100% - 2rem), 1400px);
+  margin: auto;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 2rem;
+}
+
+.msg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-container {
+  position: relative;
+  max-width: 16em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-block: 0.5rem;
+
+  & > img {
+    border-radius: var(--radius);
+  }
+}
+
+.dance {
+  position: absolute;
+  width: 4em;
+  aspect-ratio: 1/1;
+
+  bottom: -6%;
+
+  &:first-child {
+    left: -12%;
+  }
+
+  &:last-child {
+    right: -12%;
+  }
+}
+
+.bg-img {
+  z-index: -2;
+
+  position: fixed;
+
+  width: 3em;
+
+  top: 0;
+  left: 0;
+
+  border-radius: var(--radius);
+
+  &:nth-child(1) {
+    left: 1rem;
+    top: 1rem;
+
+    transform: rotate(45deg);
+  }
+
+  &:nth-child(2) {
+    left: calc(100% - 1rem - 3em);
+    top: 1rem;
+
+    transform: rotate(-45deg);
+  }
+
+  &:nth-child(3) {
+    left: 1rem;
+    top: calc(100% - 1rem - 3em);
+
+    transform: rotate(45deg);
+  }
+
+  &:nth-child(4) {
+    left: calc(100% - 1rem - 3em);
+    top: calc(100% - 1rem - 3em);
+
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  background-color: hsl(var(--bg));
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow:
+    1px 1px 2px hsl(0 0 2%),
+    2px 2px 4px hsl(0 0 2%),
+    4px 4px 8px hsl(0 0 2%);
+
+  border: 1px solid hsl(var(--red));
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+button {
+  background-color: hsl(var(--red));
+
+  padding: 0.25rem 0.75rem;
+
+  border-radius: calc(var(--radius) - 0.25rem);
+
+  margin-top: 0.5rem;
+
+  &:focus-visible {
+    outline: 2px solid;
+  }
+
+  &[data-choose="no"] {
+    background-color: hsl(0, 0%, 38%);
+  }
+}
+
+dialog,
+video {
+  border-radius: var(--radius);
+}
+
+dialog > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+dialog::backdrop {
+  background-color: hsl(0 0 2% / 0.25);
+}
